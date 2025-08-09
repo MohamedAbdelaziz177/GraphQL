@@ -1,5 +1,4 @@
 
-````markdown
 # 📌 GraphQL Spring Boot Example
 
 This is a simple **GraphQL API** built with **Spring Boot**.  
