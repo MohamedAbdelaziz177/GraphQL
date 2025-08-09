@@ -1,3 +1,5 @@
+
+````markdown
 # 📌 GraphQL Spring Boot Example
 
 This is a simple **GraphQL API** built with **Spring Boot**.  
@@ -44,10 +46,13 @@ CREATE TABLE comments (
     FOREIGN KEY (author_id) REFERENCES authors(id),
     FOREIGN KEY (post_id) REFERENCES posts(id)
 );
-V2__Seed_Data.sql
-sql
-Copy
-Edit
+````
+
+---
+
+### **`V2__Seed_Data.sql`**
+
+```sql
 USE graphql;
 
 INSERT INTO authors (id, name, phone) VALUES
@@ -68,11 +73,15 @@ INSERT INTO comments (id, content, author_id, post_id) VALUES
     (4, 'Nice tips!', 1, 3),
     (5, 'I love streams in Java!', 2, 4),
     (6, 'Could you show more examples?', 3, 4);
-📜 GraphQL Schema
-schema.graphqls
-graphql
-Copy
-Edit
+```
+
+---
+
+## 📜 GraphQL Schema
+
+### **`schema.graphqls`**
+
+```graphql
 type Query {
     AllPosts: [Post]
     PostById(id: ID): Post
@@ -84,7 +93,6 @@ type Query {
     AllComment: [Comment]
     CommentById(id: ID): Comment
     CommentsByPostId(PostId: ID): [Comment]
-
 }
 
 type Author {
@@ -104,60 +112,65 @@ type Comment {
     id: ID
     content: String
 }
-🛠 Query Resolver
-PostQueryResolver.java
-java
-Copy
-Edit
+```
+
+---
+
+## 🛠 Query Resolver
+
+### **`PostQueryResolver.java`**
+
+```java
 package com.Abdelziz26.GraphQl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 import java.util.List;
 
+@Controller
+@RequiredArgsConstructor
 public class PostQueryResolver {
 
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
 
-
     @QueryMapping
-    public Post PostById(@Argument Long id)
-    {
+    public Post PostById(@Argument Long id) {
         return postRepository.findById(id).orElse(null);
     }
 
     @QueryMapping
-    public List<Post> AllPosts()
-    {
+    public List<Post> AllPosts() {
         return postRepository.findAll();
     }
 
     @QueryMapping
-    public List<Post> postsByAuthorId(@Argument Long authorId)
-    {
+    public List<Post> postsByAuthorId(@Argument Long authorId) {
         return postRepository.findByAuthor_Id(authorId);
     }
 
     @SchemaMapping
-    public List<Comment> comments(Post post)
-    {
+    public List<Comment> comments(Post post) {
         return post.getComments();
     }
 
     @SchemaMapping
-    public Author author(Post post)
-    {
+    public Author author(Post post) {
         return post.getAuthor();
     }
 }
-🧪 Example GraphQL Query & Output
-Query: Get Post By ID
-graphql
-Copy
-Edit
+```
+
+---
+
+## 🧪 Example GraphQL Query & Output
+
+### **Query: Get Post By ID**
+
+```graphql
 query {
   PostById(id: 1) {
     id
@@ -170,11 +183,11 @@ query {
     }
   }
 }
-Example Output
+```
 
-json
-Copy
-Edit
+**Example Output**
+
+```json
 {
   "data": {
     "PostById": {
@@ -188,24 +201,37 @@ Edit
     }
   }
 }
-▶️ Running the Project
-Clone the repository:
+```
 
-bash
-Copy
-Edit
-git clone https://github.com/your-username/graphql-springboot-example.git
-Configure your application.properties for MySQL.
+---
 
-Run the application:
+## ▶️ Running the Project
 
-bash
-Copy
-Edit
-mvn spring-boot:run
-Access GraphQL Playground at:
+1. **Clone the repository**
 
-bash
-Copy
-Edit
-http://localhost:8080/graphiql
+   ```bash
+   git clone https://github.com/your-username/graphql-springboot-example.git
+   ```
+
+2. **Configure database in `application.properties`**
+
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/graphql
+   spring.datasource.username=your-username
+   spring.datasource.password=your-password
+   ```
+
+3. **Run the application**
+
+   ```bash
+   mvn spring-boot:run
+   ```
+
+4. **Open GraphQL Playground**
+
+   ```
+   http://localhost:8080/graphiql
+   ```
+
+```
+
