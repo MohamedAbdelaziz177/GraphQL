@@ -1,0 +1,15 @@
+spring:
+  application:
+        name: GraphQl
+  datasource:
+    url: jdbc:mysql://localhost:3306/graphQl
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  data:
+    jdbc:
+      dialect: mysql
+
