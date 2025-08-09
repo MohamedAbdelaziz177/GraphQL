@@ -209,7 +209,7 @@ query {
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/graphql-springboot-example.git
+   git clone https://github.com/MohamedAbdelaziz177/GraphQL
    ```
 
 2. **Configure database in `application.properties`**
@@ -231,6 +231,4 @@ query {
    ```
    http://localhost:8080/graphiql
    ```
-
-```
 
