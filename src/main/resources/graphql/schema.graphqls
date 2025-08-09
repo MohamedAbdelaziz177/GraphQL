@@ -2,7 +2,7 @@
 type Query {
     AllPosts: [Post]
     PostById(id: ID): Post
-    PostsByAuthorId(authorId: ID): Post
+    PostsByAuthorId(authorId: ID): [Post]
 
     Authors: [Author]
     AuthorById(id: ID): Author

@@ -30,6 +30,12 @@ public class PostQueryResolver {
         return postRepository.findAll();
     }
 
+    @QueryMapping
+    public List<Post> PostsByAuthorId(@Argument Long authorId)
+    {
+        return postRepository.findByAuthor_Id(authorId);
+    }
+
     @SchemaMapping
     public List<Comment> comments(Post post)
     {
