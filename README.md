@@ -7,7 +7,7 @@ The application manages **Posts**, **Comments**, and **Authors**.
 It uses:
 - **Spring Boot** for application setup.
 - **Spring GraphQL** for API queries.
-- **Flyway** for database migrations and seeding data.
+- **Flyway** for database migrations.
 - **MySQL** as the database.
 
 ---
